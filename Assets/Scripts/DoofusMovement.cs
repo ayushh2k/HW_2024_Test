@@ -11,6 +11,12 @@ public class DoofusMovement : MonoBehaviour
     private HashSet<Transform> visitedPulpits = new HashSet<Transform>(); 
     private Transform lastPulpit; 
 
+    private bool isGameOver = false; // Ensure this field is declared in your class
+
+public GameObject gameOverUI; // Assign this in the Unity Inspector
+public GameObject gameOverText; // Assign this in the Unity Inspector
+public GameObject restartButton; // Assign this in the Unity Inspector
+
     private void Start()
     {
         StartCoroutine(FetchData());
@@ -85,6 +91,31 @@ public class DoofusMovement : MonoBehaviour
                 Debug.Log("Score: " + scoreManager?.score);
             }
         }
+        else if (other.CompareTag("Obstacle"))
+        {
+            // Handle game over logic
+            GameOver();
+        }
+    }
+    private void GameOver()
+    {
+       if (isGameOver) return; // Prevent multiple game over triggers
+
+    isGameOver = true;
+    Debug.Log("Game Over! Doofus touched a spike.");
+
+    // Activate game over UI elements
+    gameOverUI.SetActive(true);
+    gameOverText.SetActive(true);
+    restartButton.SetActive(true);
+
+    // Stop spawning of pulpits
+    PulpitManager pulpitManager = FindObjectOfType<PulpitManager>();
+    if (pulpitManager != null)
+    {
+        pulpitManager.StopSpawning();
+    }
+
     }
 }
 

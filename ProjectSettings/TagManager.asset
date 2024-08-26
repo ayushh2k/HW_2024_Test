@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Pulpit
+  - Obstacle
   layers:
   - Default
   - TransparentFX

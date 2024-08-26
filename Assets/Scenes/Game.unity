@@ -485,6 +485,8 @@ MonoBehaviour:
   pulpitPrefab: {fileID: 2605782657373314215, guid: 49ad24a1b64a0c647aaac2c8ac81604d, type: 3}
   doofusTransform: {fileID: 1187503184}
   maxPulpits: 2
+  obstaclePrefab: {fileID: 3752750098285422443, guid: fbb832720f0980147859dfe8fb06bb49, type: 3}
+  numberOfObstaclesPerPulpit: 3
 --- !u!4 &867691060
 Transform:
   m_ObjectHideFlags: 0
@@ -1012,6 +1014,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 30
+  gameOverUI: {fileID: 537861970}
+  gameOverText: {fileID: 388457513}
+  restartButton: {fileID: 1173869325}
 --- !u!54 &1187503186
 Rigidbody:
   m_ObjectHideFlags: 0
