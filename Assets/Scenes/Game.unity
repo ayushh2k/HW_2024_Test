@@ -557,7 +557,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Score: '
+  m_text: 'Score: 0'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -645,7 +645,6 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
-  - component: {fileID: 963194229}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -727,24 +726,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1106460371}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &963194229
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dddb0d2f9a21ef84cb26b7d068e1427e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Target: {fileID: 1187503184}
-  m_Angle: 45
-  m_Distance: 15
-  m_Height: 10
-  m_SmoothSpeed: 0.5
-  refVelocity: {x: 0, y: 0, z: 0}
 --- !u!1 &1106460370
 GameObject:
   m_ObjectHideFlags: 0
@@ -1011,7 +992,7 @@ Transform:
   m_GameObject: {fileID: 1187503180}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1339,7 +1320,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3229d77707b76914db5f4bc679aa305f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreText: {fileID: 0}
+  score: 0
+  scoreText: {fileID: 909567083}
 --- !u!4 &2081761136
 Transform:
   m_ObjectHideFlags: 0
