@@ -1,16 +1,21 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
+using System.Collections.Generic; 
 
 public class DoofusMovement : MonoBehaviour
 {
-    public float speed = 30f; // Default speed, will be overridden by JSON data
-    private Rigidbody rb;
+    public float speed = 10f; 
+    private PulpitManager pulpitManager; 
+    private ScoreManager scoreManager; 
+    private HashSet<Transform> visitedPulpits = new HashSet<Transform>(); 
+    private Transform lastPulpit; 
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
         StartCoroutine(FetchData());
+        pulpitManager = FindObjectOfType<PulpitManager>(); 
+        scoreManager = FindObjectOfType<ScoreManager>(); 
     }
 
     private IEnumerator FetchData()
@@ -27,24 +32,59 @@ public class DoofusMovement : MonoBehaviour
             }
             else
             {
-                // Parse JSON data
                 string json = request.downloadHandler.text;
                 GameData gameData = JsonUtility.FromJson<GameData>(json);
-
-                // Apply fetched data
+  
                 speed = gameData.player_data.speed;
                 Debug.Log("Speed set to: " + speed);
             }
         }
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
+        HandleMovement();
+    }
+
+    private void HandleMovement()
+    {
+        float moveHorizontal = 0f;
+        float moveVertical = 0f;
+
+        if (Input.GetKey(KeyCode.W))
+        {
+            moveVertical = speed;
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            moveVertical = -speed;
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            moveHorizontal = -speed;
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            moveHorizontal = speed;
+        }
 
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
-        rb.MovePosition(transform.position + movement * speed * Time.deltaTime);
+        transform.Translate(movement * speed * Time.deltaTime, Space.World);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Pulpit"))
+        {
+            Transform currentPulpit = other.transform;
+
+            if (!visitedPulpits.Contains(currentPulpit))
+            {
+                visitedPulpits.Add(currentPulpit);
+                scoreManager?.IncreaseScore(); 
+                Debug.Log("Score: " + scoreManager?.score);
+            }
+        }
     }
 }
 
