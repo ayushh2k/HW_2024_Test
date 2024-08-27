@@ -5,17 +5,17 @@ using System.Collections.Generic;
 
 public class DoofusMovement : MonoBehaviour
 {
-    public float speed = 10f; 
+    public float speed = 3f; 
     private PulpitManager pulpitManager; 
     private ScoreManager scoreManager; 
     private HashSet<Transform> visitedPulpits = new HashSet<Transform>(); 
     private Transform lastPulpit; 
 
-    private bool isGameOver = false; // Ensure this field is declared in your class
+    private bool isGameOver = false;
 
-public GameObject gameOverUI; // Assign this in the Unity Inspector
-public GameObject gameOverText; // Assign this in the Unity Inspector
-public GameObject restartButton; // Assign this in the Unity Inspector
+public GameObject gameOverUI;
+public GameObject gameOverText;
+public GameObject restartButton; 
 
     private void Start()
     {
@@ -93,13 +93,12 @@ public GameObject restartButton; // Assign this in the Unity Inspector
         }
         else if (other.CompareTag("Obstacle"))
         {
-            // Handle game over logic
             GameOver();
         }
     }
     private void GameOver()
     {
-       if (isGameOver) return; // Prevent multiple game over triggers
+       if (isGameOver) return; 
 
     isGameOver = true;
     Debug.Log("Game Over! Doofus touched a spike.");

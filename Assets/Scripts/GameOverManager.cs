@@ -34,7 +34,7 @@ public class GameOverManager : MonoBehaviour
         FindObjectOfType<PulpitManager>().StopSpawning();
     }
 
-    private void RestartGame()
+    public void RestartGame()
     {
         doofusTransform.position = new Vector3(initialPulpitTransform.position.x, initialPulpitTransform.position.y + 4, initialPulpitTransform.position.z);
 

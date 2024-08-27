@@ -17,6 +17,6 @@ public class DifficultyManager : MonoBehaviour
 
     private void LoadGameScene()
     {
-        SceneManager.LoadScene("Game"); // Replace with the actual name of your game scene
+        SceneManager.LoadScene("Game");
     }
 }
